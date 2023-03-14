@@ -2,9 +2,6 @@ FROM ubuntu:latest
 RUN mkdir -p /WORK
 WORKDIR /WORK
 RUN apt update   
-RUN apt-get install -y --no-install-recommends    \
-     libglib2.0-0         libfontconfig1     \
-
 # MXE Requirements
 RUN apt-get install -y --no-install-recommends \
     autoconf \
