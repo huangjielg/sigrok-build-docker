@@ -34,6 +34,6 @@ jobs:
     # Build the Docker image
     - name: Build
       run: |-
-        docker build  -f "DockerFile" -t sigrokdocker:latest "Docker"
+        docker build  -f "Docker/DockerFile" -t sigrokdocker:latest "Docker"
     
    
