@@ -42,4 +42,4 @@ RUN      rm -rf /var/lib/apt/lists/*
 WORKDIR /work
 RUN    git clone --depth 1 https://github.com/mxe/mxe.git 
 RUN   ln -s /usr/bin/python3 /usr/bin/python
-RUN   make 
+RUN   make -c mxe
