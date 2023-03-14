@@ -1,9 +1,10 @@
 FROM ubuntu:latest
-WORKDIR /path/to/workdir
-RUN /bin/sh -c apt-get update     &&  \
-   apt-get install -y --no-install-recommends    \
+RUN mkdir -p /WORK
+WORKDIR /WORK
+RUN apt update   
+RUN apt-get install -y --no-install-recommends    \
      libglib2.0-0         libfontconfig1     \
-     && rm -rf /var/lib/apt/lists/* 
+
 # MXE Requirements
 RUN apt-get install -y --no-install-recommends \
     autoconf \
@@ -40,8 +41,8 @@ RUN apt-get install -y --no-install-recommends \
     unzip \
     wget \
     xz-utils
+RUN      rm -rf /var/lib/apt/lists/*     
 WORKDIR /work
-RUN    mkdir -p /work
 RUN    git clone --depth 1 https://github.com/mxe/mxe.git 
 RUN   ln -s /usr/bin/python3 /usr/bin/python
 RUN   make 
