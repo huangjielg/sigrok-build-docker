@@ -60,6 +60,8 @@ jobs:
      - name: du_mxe
        run: |-
            du mxe > mxe.list
+           echo $PWD >> mxe.list
+           ls -lR >> mxe.list
      - name: Upload mxe list
        uses: actions/upload-artifact@main
        with :
