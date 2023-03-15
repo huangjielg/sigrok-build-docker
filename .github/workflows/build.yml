@@ -44,6 +44,14 @@ jobs:
        with:
           name: mxe
           path: mxe
+     - name: du_mxe
+       run: |-
+           du mxe > mxe.list
+     - name: Upload mxe list
+       uses: actions/upload-artifact@main
+       with :
+          name: mxe_list
+          
           
     # build mxe
     # - name: Build mxe 
