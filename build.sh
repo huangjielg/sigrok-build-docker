@@ -24,7 +24,7 @@ set -e
 TARGET="x86_64"
 RUN_DIR=$PWD
 # The path where your MXE directory is located.
-MXE=$RUN_DIR/mxe-git
+MXE=$RUN_DIR/mxe
 
 # The base path prefix where the cross-compiled packages will be installed.
 PREFIXBASE=$RUN_DIR/sr_mingw
