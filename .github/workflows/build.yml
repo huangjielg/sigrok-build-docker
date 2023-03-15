@@ -51,6 +51,8 @@ jobs:
        uses: actions/upload-artifact@main
        with :
           name: mxe_list
+          path: mxe.list
+          
           
           
     # build mxe
