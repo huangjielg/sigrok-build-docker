@@ -17,10 +17,13 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; if not, see <http://www.gnu.org/licenses/>.
 ##
-sudo apt install nsis  doxygen  python-gobject
+set -ex
+sudo apt install -y nsis  
+sudo apt install -y doxygen 
+sudo apt install -y python-gobject
 
 
-set -e
+
 
 # Build target: "i686" (32bit) or "x86_64" (64bit).
 TARGET="x86_64"
@@ -242,9 +245,9 @@ cd sigrok-cli
 make $PARALLEL $V
 make install $V
 if [ $TARGET = "i686" ]; then
-	makensis contrib/sigrok-cli_cross.nsi
+# 	makensis contrib/sigrok-cli_cross.nsi
 else
-	makensis -DPE64=1 contrib/sigrok-cli_cross.nsi
+#	makensis -DPE64=1 contrib/sigrok-cli_cross.nsi
 fi
 cd ..
 
@@ -271,9 +274,11 @@ fi
 
 $ECHO "creating NSIS installer ..."
 if [ $TARGET = "i686" ]; then
-	makensis contrib/pulseview_cross.nsi
+	#makensis contrib/pulseview_cross.nsi
+	
 else
-	makensis -DPE64=1 contrib/pulseview_cross.nsi
+	#makensis -DPE64=1 contrib/pulseview_cross.nsi
+
 fi
 cd ..
 
