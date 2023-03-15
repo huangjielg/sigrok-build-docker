@@ -250,9 +250,9 @@ cd ..
 $ECHO "component pulseview ..."
 $GIT_CLONE $REPO_BASE/pulseview
 cd pulseview
-patch -p1 < ../../pulseview-boost-numeric-literals.patch
-patch -p1 < ../../pulseview-manual-pdf-hack.patch
-cp ../../FileAssociation.nsh contrib
+patch -p1 < $TOP_DIR/sigrok-util/cross-compile/mingw/pulseview-boost-numeric-literals.patch
+patch -p1 < $TOP_DIR/sigrok-util/cross-compile/mingw/pulseview-manual-pdf-hack.patch
+cp $TOP_DIR/sigrok-util/cross-compile/mingw/FileAssociation.nsh contrib
 $CMAKE \
 	-DCMAKE_INSTALL_PREFIX:PATH=$PREFIX \
 	-DCMAKE_BUILD_TYPE=$BUILD_TYPE \
