@@ -38,10 +38,13 @@ jobs:
      - if: ${{ steps.cacheMxe.outputs.cache-hit != 'true' }}
        name: rebuildmxe
        run: sh .github/build-mxe.sh
-
-   
-   
-
+     - if: ${{ steps.cacheMxe.outputs.cache-hit != 'true' }}
+       name: Upload mxe
+       uses: actions/upload-artifact@main
+       with:
+          name: mxe
+          path: mxe
+          
     # build mxe
     # - name: Build mxe 
     #   run: |-
@@ -51,5 +54,5 @@ jobs:
     #   uses: actions/upload-artifact@main
     #   with:
     #     name: mxe
-    #     path: mxe/usr
+    #     
    
