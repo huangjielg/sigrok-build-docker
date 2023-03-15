@@ -22,12 +22,12 @@ set -e
 
 # Build target: "i686" (32bit) or "x86_64" (64bit).
 TARGET="x86_64"
-RUN_DIR=$PWD
+TOP_DIR=$PWD
 # The path where your MXE directory is located.
-MXE=$RUN_DIR/mxe
+MXE=$TOP_DIR/mxe
 
 # The base path prefix where the cross-compiled packages will be installed.
-PREFIXBASE=$RUN_DIR/sr_mingw
+PREFIXBASE=$TOP_DIR/sr_mingw
 
 # The base path prefix where to download files to and where to build packages.
 BUILDBASE=./build
@@ -124,7 +124,7 @@ tar xzf $PREFIX/Python34.tar.gz -C $PREFIX
 
 # Fix for bug #1195.
 if [ $TARGET = "x86_64" ]; then
-	patch -p1 $PREFIX/Python34/include/pyconfig.h < ../pyconfig.patch
+	patch -p1 $PREFIX/Python34/include/pyconfig.h < $TOPDIR/sigrok-util/cross-compile/mingw/pyconfig.patch/pyconfig.patch
 fi
 
 # Create a dummy python3.pc file so that pkg-config finds Python 3.
