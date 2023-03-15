@@ -1,4 +1,4 @@
-apt-get install -y --no-install-recommends \
+sudo apt-get install -y --no-install-recommends \
     autoconf \
     automake \
     autopoint \
