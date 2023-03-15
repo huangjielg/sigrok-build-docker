@@ -17,7 +17,9 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; if not, see <http://www.gnu.org/licenses/>.
 ##
-sudo apt install nsis
+sudo apt install nsis  doxygen  python-gobject
+
+
 set -e
 
 # Build target: "i686" (32bit) or "x86_64" (64bit).
