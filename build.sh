@@ -245,9 +245,9 @@ cd sigrok-cli
 make $PARALLEL $V
 make install $V
 if [ $TARGET = "i686" ]; then
-# 	makensis contrib/sigrok-cli_cross.nsi
+ 	makensis contrib/sigrok-cli_cross.nsi
 else
-#	makensis -DPE64=1 contrib/sigrok-cli_cross.nsi
+	makensis -DPE64=1 contrib/sigrok-cli_cross.nsi
 fi
 cd ..
 
@@ -274,10 +274,10 @@ fi
 
 $ECHO "creating NSIS installer ..."
 if [ $TARGET = "i686" ]; then
-	#makensis contrib/pulseview_cross.nsi
+	makensis contrib/pulseview_cross.nsi
 	
 else
-	#makensis -DPE64=1 contrib/pulseview_cross.nsi
+	makensis -DPE64=1 contrib/pulseview_cross.nsi
 
 fi
 cd ..

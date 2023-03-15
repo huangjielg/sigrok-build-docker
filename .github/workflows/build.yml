@@ -40,11 +40,7 @@ jobs:
      - if: ${{ steps.cacheMxe.outputs.cache-hit != 'true' }}
        name: rebuildmxe
        run: sh .github/build-mxe.sh
-     - if: ${{ steps.cacheMxe.outputs.cache-hit != 'true' }}  
-       name: clearmxetemp
-       run: |-
-          rm -fr mxe/pkg
-          rm -fr mxe/.ccache
+
           
        
      - if: ${{ steps.cacheMxe.outputs.cache-hit != 'true' }}
