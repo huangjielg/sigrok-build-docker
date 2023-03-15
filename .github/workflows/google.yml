@@ -25,20 +25,31 @@ jobs:
       id-token: 'write'
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+     - name: Checkout
+       uses: actions/checkout@v3
+        
+     - name: cacheMxe
+       id: cacheMxe
+       uses: actions/cache@v1
+       with:
+        path: mxe
+        key: ${{ runner.os }}-mxe-${{ hashFiles('.github/build-mxe.sh') }}
+        
+     - if: ${{ steps.cacheMxe.outputs.cache-hit != 'true' }}
+       name: rebuildmxe
+       run: sh .github/build-mxe.sh
 
    
    
 
-    # Build the Docker image
-    - name: Build
-      run: |-
-        docker build  -f "Docker/DockerFile" -t sigrokmxe:latest "Docker"
-        docker run -v $PWD/mxe:/a sigrokmxe:latest sh -c "cp -a /work/mxe/usr /a/usr"
-    - name: Upload work
-      uses: actions/upload-artifact@main
-      with:
-        name: mxe
-        path: mxe/usr
+    # build mxe
+    # - name: Build mxe 
+    #   run: |-
+    #    docker build  -f "Docker/DockerFile" -t sigrokmxe:latest "Docker"
+    #    docker run -v $PWD/mxe:/a sigrokmxe:latest sh -c "cp -a /work/mxe/usr /a/usr"
+    # - name: Upload work
+    #   uses: actions/upload-artifact@main
+    #   with:
+    #     name: mxe
+    #     path: mxe/usr
    
