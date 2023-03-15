@@ -73,7 +73,12 @@ jobs:
           name: buid_log
           path: build.log
           
-          
+     - name: Upload sigrok
+       uses: actions/upload-artifact@main
+       with :
+          name: sigrok
+          path: sr_mingw*
+                 
     # build mxe
     # - name: Build mxe 
     #   run: |-

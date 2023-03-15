@@ -17,7 +17,7 @@
 ## You should have received a copy of the GNU General Public License
 ## along with this program; if not, see <http://www.gnu.org/licenses/>.
 ##
-
+sudo apt install nsis
 set -e
 
 # Build target: "i686" (32bit) or "x86_64" (64bit).
@@ -214,15 +214,15 @@ make install $V
 cd ..
 
 # sigrok-firmware-fx2lafw
-$ECHO "component sigrok-firmware-fx2lafw ..."
-$GIT_CLONE $REPO_BASE/sigrok-firmware-fx2lafw
-cd sigrok-firmware-fx2lafw
-./autogen.sh
+# $ECHO "component sigrok-firmware-fx2lafw ..."
+# $GIT_CLONE $REPO_BASE/sigrok-firmware-fx2lafw
+# cd sigrok-firmware-fx2lafw
+# ./autogen.sh
 # We're building the fx2lafw firmware on the host, no need to cross-compile.
-./configure --prefix=$PREFIX
-make $PARALLEL $V
-make install $V
-cd ..
+# ./configure --prefix=$PREFIX
+# make $PARALLEL $V
+# make install $V
+# cd ..
 
 # sigrok-dumps
 $ECHO "component sigrok-dumps ..."
