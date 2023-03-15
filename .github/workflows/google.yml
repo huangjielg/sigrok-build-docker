@@ -35,10 +35,10 @@ jobs:
     - name: Build
       run: |-
         docker build  -f "Docker/DockerFile" -t sigrokmxe:latest "Docker"
-        docker run -v $PWD/mxe:/a sigrokmxe:latest sh -c "cp -a /work/mxe/usr /a"
+        docker run -v $PWD/mxe:/a sigrokmxe:latest sh -c "cp -a /work/mxe/usr /a/usr"
     - name: Upload work
       uses: actions/upload-artifact@main
       with:
         name: mxe
-        path: mxe/a
+        path: mxe/usr
    
