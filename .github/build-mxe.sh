@@ -36,13 +36,13 @@ sudo apt-get install -y --no-install-recommends \
     
 git clone --depth 1 https://github.com/mxe/mxe.git 
 ln -s /usr/bin/python3 /usr/bin/python
-make -C mxe  MXE_TARGETS=x86_64-w64-mingw32.static.posix \
-   MXE_PLUGIN_DIRS=plugins/examples/qt5-freeze \
-   ccache
-  
-   
 #make -C mxe  MXE_TARGETS=x86_64-w64-mingw32.static.posix \
 #   MXE_PLUGIN_DIRS=plugins/examples/qt5-freeze \
-#   gcc glib libzip libusb1 libftdi1 hidapi glibmm qtbase qtimageformats \
-#   qtsvg qttranslations boost check gendef libieee1284 \
-#   qtbase_CONFIGURE_OPTS='-no-sql-mysql'   
+#   ccache
+  
+   
+make -C mxe  MXE_TARGETS=x86_64-w64-mingw32.static.posix \
+   MXE_PLUGIN_DIRS=plugins/examples/qt5-freeze \
+   gcc glib libzip libusb1 libftdi1 hidapi glibmm qtbase qtimageformats \
+   qtsvg qttranslations boost check gendef libieee1284 \
+   qtbase_CONFIGURE_OPTS='-no-sql-mysql'   
