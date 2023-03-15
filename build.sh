@@ -20,7 +20,7 @@
 set -ex
 sudo apt install -y nsis  
 sudo apt install -y doxygen 
-sudo apt install -y python-gobject
+#sudo apt install -y python-gobject
 
 
 
