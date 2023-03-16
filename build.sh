@@ -232,11 +232,11 @@ cd ..
 # cd ..
 
 # sigrok-dumps
-# $ECHO "component sigrok-dumps ..."
-# $GIT_CLONE $REPO_BASE/sigrok-dumps
-# cd sigrok-dumps
-# make install PREFIX=$PREFIX $V
-# cd ..
+ $ECHO "component sigrok-dumps ..."
+ $GIT_CLONE $REPO_BASE/sigrok-dumps
+ cd sigrok-dumps
+ make install PREFIX=$PREFIX $V
+ cd ..
 
 # sigrok-cli
 $ECHO "component sigrok-cli ..."

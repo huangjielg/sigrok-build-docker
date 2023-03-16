@@ -67,13 +67,17 @@ jobs:
        uses: actions/upload-artifact@main
        with :
           name: buid_log
-          path: build.log
+          path: |- 
+            build.log
+            build_release_64
           
      - name: Upload sigrok
        uses: actions/upload-artifact@main
        with :
           name: sigrok
-          path: sr_mingw*
+          path: |-
+            sr_mingw*
+            !sr_mingw*\share\sigrok-dumps
                  
     # build mxe
     # - name: Build mxe 
