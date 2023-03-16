@@ -232,11 +232,11 @@ cd ..
 # cd ..
 
 # sigrok-dumps
-$ECHO "component sigrok-dumps ..."
-$GIT_CLONE $REPO_BASE/sigrok-dumps
-cd sigrok-dumps
-make install PREFIX=$PREFIX $V
-cd ..
+# $ECHO "component sigrok-dumps ..."
+# $GIT_CLONE $REPO_BASE/sigrok-dumps
+# cd sigrok-dumps
+# make install PREFIX=$PREFIX $V
+# cd ..
 
 # sigrok-cli
 $ECHO "component sigrok-cli ..."
@@ -257,8 +257,8 @@ cd ..
 $ECHO "component pulseview ..."
 $GIT_CLONE $REPO_BASE/pulseview
 cd pulseview
-patch -p1 < $TOP_DIR/sigrok-util/cross-compile/mingw/pulseview-boost-numeric-literals.patch
-patch -p1 < $TOP_DIR/sigrok-util/cross-compile/mingw/pulseview-manual-pdf-hack.patch
+#patch -p1 < $TOP_DIR/sigrok-util/cross-compile/mingw/pulseview-boost-numeric-literals.patch
+#patch -p1 < $TOP_DIR/sigrok-util/cross-compile/mingw/pulseview-manual-pdf-hack.patch
 cp $TOP_DIR/sigrok-util/cross-compile/mingw/FileAssociation.nsh contrib
 $CMAKE \
 	-DCMAKE_INSTALL_PREFIX:PATH=$PREFIX \
