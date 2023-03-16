@@ -49,3 +49,8 @@ make -C mxe  MXE_TARGETS=x86_64-w64-mingw32.static.posix \
 
 rm -fr mxe/pkg
 rm -fr mxe/.ccache
+rm -fr mxe/log*/
+rm -fr mxe/pkg
+rm -fr mxe/tmp-*
+rm -fr mxe/.ccache  
+tar cJf mxe.tar.xz mxe

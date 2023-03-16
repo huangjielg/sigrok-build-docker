@@ -48,7 +48,8 @@ jobs:
        uses: actions/upload-artifact@main
        with:
           name: mxe
-          path: mxe
+          path: mxe.tar.xz
+
      - name: buld_sigrok
        run: sh ./build.sh | tee build.log
        
