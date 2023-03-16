@@ -34,7 +34,7 @@ sudo apt-get install -y --no-install-recommends \
     wget \
     xz-utils
     
-git clone --depth 1 https://github.com/mxe/mxe.git 
+git clone -b build-2022-04-09 --depth 1 https://github.com/mxe/mxe.git 
 ln -s /usr/bin/python3 /usr/bin/python
 #make -C mxe  MXE_TARGETS=x86_64-w64-mingw32.static.posix \
 #   MXE_PLUGIN_DIRS=plugins/examples/qt5-freeze \
