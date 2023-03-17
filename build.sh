@@ -20,6 +20,7 @@
 set -ex
 sudo apt install -y nsis  
 sudo apt install -y doxygen 
+gem install public_suffix -v 4.0.7
 sudo gem install asciidoctor-pdf
 
 #sudo apt install -y python-gobject
