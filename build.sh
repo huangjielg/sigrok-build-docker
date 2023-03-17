@@ -18,10 +18,7 @@
 ## along with this program; if not, see <http://www.gnu.org/licenses/>.
 ##
 set -ex
-sudo apt install -y nsis  
-sudo apt install -y doxygen 
-gem install public_suffix -v 4.0.7
-sudo gem install asciidoctor-pdf
+
 
 #sudo apt install -y python-gobject
 
@@ -32,7 +29,7 @@ sudo gem install asciidoctor-pdf
 TARGET="x86_64"
 TOP_DIR=$PWD
 # The path where your MXE directory is located.
-MXE=$TOP_DIR/mxe
+MXE=/usr/lib/mxe
 
 # The base path prefix where the cross-compiled packages will be installed.
 PREFIXBASE=$TOP_DIR/sr_mingw
@@ -88,7 +85,7 @@ $ECHO "setting up toolchain variables ..."
 # We need to find tools in the toolchain.
 export PATH=$MXE/usr/bin:$PATH
 
-TOOLCHAIN_TRIPLET="$TARGET-w64-mingw32.static.posix"
+TOOLCHAIN_TRIPLET="$TARGET-w64-mingw32.static"
 
 CMAKE="$TOOLCHAIN_TRIPLET-cmake"
 
@@ -98,15 +95,15 @@ C="--host=$TOOLCHAIN_TRIPLET --prefix=$PREFIX CPPFLAGS=-D__printf__=__gnu_printf
 L="--disable-shared --enable-static"
 
 if [ $TARGET = "i686" ]; then
-	export PKG_CONFIG_PATH_i686_w64_mingw32_static_posix="$P:$P2"
+	export PKG_CONFIG_PATH_i686_w64_mingw32_static="$P:$P2"
 else
-	export PKG_CONFIG_PATH_x86_64_w64_mingw32_static_posix="$P:$P2"
+	export PKG_CONFIG_PATH_x86_64_w64_mingw32_static="$P:$P2"
 fi
 
 # Remove build directory contents (if any) and create a new build dir.
 $ECHO "starting new build directory: $BUILDDIR"
-rm -rf $BUILDDIR
-mkdir $BUILDDIR
+#rm -rf $BUILDDIR
+mkdir -p $BUILDDIR
 cd $BUILDDIR
 
 # -----------------------------------------------------------------------------
@@ -130,9 +127,14 @@ WGET_SR="$WGET --no-check-certificate"
 $WGET_SR http://www.sigrok.org/tmp/Python34_$TARGET.tar.gz -O $PREFIX/Python34.tar.gz
 tar xzf $PREFIX/Python34.tar.gz -C $PREFIX
 
+    echo "patch python"
+    echo $PREFIX
 # Fix for bug #1195.
 if [ $TARGET = "x86_64" ]; then
+    echo "patch python"
+    echo $PREFIX
 	patch -p1 $PREFIX/Python34/include/pyconfig.h < $TOP_DIR/sigrok-util/cross-compile/mingw/pyconfig.patch
+    
 fi
 
 # Create a dummy python3.pc file so that pkg-config finds Python 3.
@@ -164,8 +166,8 @@ $WGET_SR http://www.sigrok.org/tmp/python34_$TARGET.zip -O $PREFIX/python34.zip
 # doesn't. Thus, we generate the file manually here.
 if [ $TARGET = "x86_64" ]; then
 	cp $PREFIX/python34.dll .
-	$MXE/usr/$TARGET-w64-mingw32.static.posix/bin/gendef python34.dll
-	$MXE/usr/bin/$TARGET-w64-mingw32.static.posix-dlltool \
+	$MXE/usr/$TARGET-w64-mingw32.static/bin/gendef python34.dll
+	$MXE/usr/bin/$TARGET-w64-mingw32.static-dlltool \
 		--dllname python34.dll --def python34.def \
 		--output-lib libpython34.a
 	mv -f libpython34.a $PREFIX/Python34/libs
@@ -174,7 +176,7 @@ fi
 
 # We need to include the *.pyd files from python34.zip into the installers,
 # otherwise importing certain modules (e.g. ctypes) won't work (bug #1409).
-unzip -q $PREFIX/python34.zip *.pyd -d $PREFIX
+#unzip -q $PREFIX/python34.zip *.pyd -d $PREFIX
 
 # Zadig (we ship this with frontends for easy driver switching).
 $ECHO "fetching zadig ..."
@@ -184,6 +186,7 @@ $WGET https://github.com/pbatard/libwdi/releases/download/v1.2.5/zadig_xp-2.2.ex
 # libserialport
 $ECHO "component libserialport ..."
 $GIT_CLONE $REPO_BASE/libserialport
+
 cd libserialport
 ./autogen.sh
 ./configure $C $L
@@ -240,6 +243,7 @@ cd ..
  cd ..
 
 # sigrok-cli
+
 $ECHO "component sigrok-cli ..."
 $GIT_CLONE $REPO_BASE/sigrok-cli
 cd sigrok-cli
